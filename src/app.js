@@ -1,8 +1,7 @@
 /* eslint-disable */
 import "bootstrap";
 import "./style.css";
-
-const NUMEROS = [
+const NUMBERS = [
   "A",
   "2",
   "3",
@@ -17,41 +16,35 @@ const NUMEROS = [
   "K",
   "<img src='https://media.istockphoto.com/vectors/dancing-joker-with-playing-cards-on-white-vector-id960303126' style='width: 250px; height: 250px;'>"
 ];
-const PALOS = ["♥", "♠", "♦", "♣"];
-const COLORES = ["black", "red"];
-
-const SimboloArriba = document.querySelector("#SimboloArriba");
-const numero = document.querySelector("#numero");
-const SimboloAbajo = document.querySelector("#SimboloAbajo");
-
+const ICONS = ["♥", "♠", "♦", "♣"];
+const COLORS = ["black", "red"];
+const topSymbol = document.querySelector("#topSymbol");
+const number = document.querySelector("#number");
+const bottomSymbol = document.querySelector("#bottomSymbol");
 window.onload = function() {
-  GeneradorValor();
-  document.querySelector("#boton").addEventListener("click", event => {
+  generateValue();
+  document.querySelector("#button").addEventListener("click", event => {
     // Al hacer click hace un a nueva llamada y genera un nuevo valor
-    GeneradorValor();
+    generateValue();
   });
 };
-
-function GeneradorNumAleatorio(myArray) {
+function randomElement(myArray) {
   return myArray[Math.floor(Math.random() * myArray.length)];
 }
-
-function GeneradorValor() {
-  let Simbolo = GeneradorNumAleatorio(PALOS);
-  let Color = GeneradorNumAleatorio(COLORES);
-  let Numeros = GeneradorNumAleatorio(NUMEROS);
-  SimboloArriba.innerHTML = Simbolo;
-  SimboloArriba.style.color = Color;
-  SimboloAbajo.innerHTML = Simbolo;
-  SimboloAbajo.style.color = Color;
-
-  numero.innerHTML = Numeros;
-
+function generateValue() {
+  let Symbol = randomElement(ICONS);
+  let Color = randomElement(COLORS);
+  let Number = randomElement(NUMBERS);
+  topSymbol.innerHTML = Symbol;
+  topSymbol.style.color = Color;
+  bottomSymbol.innerHTML = Symbol;
+  bottomSymbol.style.color = Color;
+  number.innerHTML = Number;
   if (
-    Numeros ==
+    Number ==
     "<img src='https://media.istockphoto.com/vectors/dancing-joker-with-playing-cards-on-white-vector-id960303126' style='width: 250px; height: 250px;'>"
   ) {
-    SimboloArriba.innerHTML = "";
-    SimboloAbajo.innerHTML = "";
+    topSymbol.innerHTML = "";
+    bottomSymbol.innerHTML = "";
   }
 }
